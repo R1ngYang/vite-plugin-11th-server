@@ -31,10 +31,18 @@
         setup(props, { emit }) {
             // v-model
             const inputValue = ref(props.value || props.modelValue);
-
+            const resultValue = ref(inputValue.value);
+            // const handleInput = (e) => {
+            //     console.log(e);
+            //     if (e.data) {
+            //         resultValue.value += e.data;
+            //     }
+            // };
             watch(inputValue, (value) => {
+                resultValue.value = value;
                 emit("update:modelValue", value);
             });
+
             //
             const mainRef = ref("mainRef");
             watch(mainRef, () => {

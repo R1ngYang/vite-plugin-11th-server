@@ -1,23 +1,17 @@
 <template>
     <div id="app">
-        <input-test></input-test>
+        <div id="nav">
+            <router-link to="/"> Home</router-link>
+            <router-link to="/contact">Contact </router-link>
+        </div>
+        <router-view />
     </div>
 </template>
 
 <script>
-
-import InputTest from "./test/InputTest";
-export default {
-    name: 'App',
-    components: { InputTest },
-    data() {
-        return {
-
-            a: "123"
-        }
-    }
-}
+    export default {
+        name: "App",
+    };
 </script>
 
-<style>
-</style>
+<style></style>

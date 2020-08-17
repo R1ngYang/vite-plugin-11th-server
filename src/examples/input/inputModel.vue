@@ -1,31 +1,23 @@
 <template>
     <div>
-        {{ a }}
-        <div style="" class="input-text">
-            <xi-input
-            :readonly="true"
-                @input="change"
-                v-model="a"
-            ></xi-input>
-        </div>
+        value: {{ value }}
+        <xi-input :readonly="true" @input="change" v-model="value"></xi-input>
     </div>
 </template>
 <script>
     import { ref, onUpdated } from "vue";
-    import XiInput from "../components/input/XiInput.vue";
+    import XiInput from "../../components/input/XiInput.vue";
 
     export default {
         components: { XiInput },
         setup() {
-            const a = ref(123);
-
-            const change = () => {
-            };
+            const value = ref("xi");
+            const change = () => {};
 
             onUpdated(() => {});
 
             return {
-                a,
+                value,
                 change,
             };
         },

@@ -1,3 +1,3 @@
 <template>
-    <div v-if="w"></div>
+    <div>123123</div>
 </template>
