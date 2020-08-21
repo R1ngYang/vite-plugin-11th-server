@@ -10,19 +10,19 @@
     import XiHeader from "./Header.vue";
     import XiAside from "./Aside.vue";
     import XiContainer from "./Container.vue";
-    import { onMounted, provide, ref } from "vue";
+    import { provide, ref, watchEffect } from "vue";
+    import usePageSize from "../utils/usePageSize";
+
     export default {
         name: "XiHome",
         components: { XiHeader, XiAside, XiContainer },
         setup() {
-            let smallScreenModel = ref(false);
-            provide("smallScreenModel", smallScreenModel);
-            onMounted(() => {
-                smallScreenModel.value = document.body.clientWidth < 700;
+            const { width } = usePageSize();
+            const smallScreenModel = ref(false);
+            watchEffect(() => {
+                smallScreenModel.value = width.value < 700;
             });
-            window.onresize = () => {
-                smallScreenModel.value = document.body.clientWidth < 700;
-            };
+            provide("smallScreenModel", smallScreenModel);
 
             const screenModelChange = () => {
                 smallScreenModel.value = !smallScreenModel.value;
@@ -39,5 +39,6 @@
     .xi-home {
         width: 100%;
         height: 100%;
+        overflow: hidden;
     }
 </style>

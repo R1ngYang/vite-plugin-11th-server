@@ -8,6 +8,7 @@ const router = createRouter({
     routes: [
         { path: "/",  component: InputTest },
         { path: "/contact",  component: HelloWorld },
+        { path: "/text",  component: HelloWorld },
     ],
 });
 

@@ -7,13 +7,17 @@
 <script>
     import { computed } from "vue";
     import style from "../style/styleUtil";
+    import usePageSize from "../utils/usePageSize";
+
     export default {
         name: "XiContainer",
 
         setup() {
+            const { width } = usePageSize();
             const asideStyle = computed(() => {
                 return {
-                    "--aside-width": style.asideWidth,
+                    "--aside-width":
+                        width.value > 700 ? style.asideWidth : "0px",
                     "--header-height": style.headerHeight,
                 };
             });
