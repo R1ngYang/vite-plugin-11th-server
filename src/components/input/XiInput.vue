@@ -46,7 +46,6 @@
             //
             const mainRef = ref("mainRef");
             watch(mainRef, () => {
-                console.log(213);
             });
 
             return {

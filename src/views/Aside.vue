@@ -1,27 +1,36 @@
 <template>
     <div class="xi-aside" :style="asideStyle">
-        {{asideStyle}}
+        <router-link class="xi-aside-router" to="/"> Home</router-link>
+        <router-link class="xi-aside-router" to="/contact"
+            >Contact
+        </router-link>
+        {{ smallScreenModel }}
     </div>
 </template>
 
 <script>
     import style from "../style/styleUtil";
-    import { computed } from "vue";
+    import { computed, inject, ref } from "vue";
 
     export default {
         name: "XiAside",
         setup() {
+            const smallScreenModel = ref(inject("smallScreenModel"));
+
             const asideStyle = computed(() => {
+                const asideWidth = smallScreenModel.value
+                    ? "0px"
+                    : style.asideWidth;
                 return {
-                    "--aside-width": style.asideWidth,
+                    "--aside-width": asideWidth,
                     "--background": style.asideColor,
                     "--header-height": style.headerHeight,
                     "--shadow-color": style.background,
                 };
             });
-
             return {
                 asideStyle,
+                smallScreenModel,
             };
         },
     };
@@ -33,6 +42,11 @@
         height: calc(100% - var(--header-height));
         background: var(--background);
         box-shadow: 5px 3px 5px var(--shadow-color);
-        
+        float: left;
+        overflow: hidden;
+        transition: width 0.5s ease;
+    }
+    .xi-aside-router {
+        display: block;
     }
 </style>

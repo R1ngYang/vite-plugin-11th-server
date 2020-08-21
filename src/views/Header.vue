@@ -5,6 +5,7 @@
             :width="headerImgSize.width"
             :height="headerImgSize.height"
             style="padding:5px"
+            @click="handleImgClick"
         />
     </div>
 </template>
@@ -15,7 +16,7 @@
 
     export default {
         name: "XiHeader",
-        setup() {
+        setup(props, { emit }) {
             const headerStyle = computed(() => {
                 return {
                     "--background": style.headerColor,
@@ -29,9 +30,14 @@
                 height: parseInt(style.headerHeight) - 10,
             });
 
+            const handleImgClick = (e) => {
+                emit("screen-model-change", e);
+            };
+
             return {
                 headerStyle,
                 headerImgSize,
+                handleImgClick,
             };
         },
     };
