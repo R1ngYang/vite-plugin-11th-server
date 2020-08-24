@@ -1,4 +1,5 @@
 <template>
+    <div>123456789123456789123456789</div>
     <div>{{ width }}</div>
     <div>{{ height }}</div>
 </template>

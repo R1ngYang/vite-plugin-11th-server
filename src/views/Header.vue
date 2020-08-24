@@ -50,5 +50,7 @@
         background: var(--background);
         height: var(--height);
         box-shadow: 0px 0px 5px var(--shadow-color);
+        position: absolute;
+        top: 0;
     }
 </style>

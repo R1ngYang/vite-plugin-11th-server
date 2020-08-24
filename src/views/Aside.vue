@@ -48,6 +48,8 @@
         float: left;
         overflow: hidden;
         transition: width 0.5s ease;
+        position: absolute;
+        top: var(--header-height);
     }
     .xi-aside-router {
         display: block;
