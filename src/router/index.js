@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import InputTest from "../examples/input";
-import HelloWorld from "../components/HelloWorld";
+import InputTest from "../examples/input/index.vue";
+import HelloWorld from "../components/HelloWorld.vue";
 
 const router = createRouter({
     history: createWebHistory(),

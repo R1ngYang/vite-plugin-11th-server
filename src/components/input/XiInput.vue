@@ -19,7 +19,7 @@
 <script>
     import { ref, watch } from "vue";
 
-    import styleUtil from "@/style/styleUtil";
+    import styleUtil from "../../style/styleUtil";
     export default {
         name: "XiInput",
 
