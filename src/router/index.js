@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import InputTest from "../examples/input/index.vue";
+import InputTest from "../examples/input/InputTest.vue";
+import ButtonTest from "../examples/button/ButtonTest.vue";
 import HelloWorld from "../components/HelloWorld.vue";
 
 const router = createRouter({
@@ -9,6 +10,7 @@ const router = createRouter({
         { path: "/",  component: InputTest },
         { path: "/contact",  component: HelloWorld },
         { path: "/text",  component: HelloWorld },
+        { path: "/button",  component: ButtonTest },
     ],
 });
 

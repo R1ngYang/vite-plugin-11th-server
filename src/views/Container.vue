@@ -40,7 +40,6 @@
         padding: 10px 0 0 10px;
         float: left;
         overflow: auto;
-        background: red;
         transition: margin, width 0.5s, 0.5s ease;
     }
 </style>

@@ -4,9 +4,8 @@
         <router-link class="xi-aside-router" to="/contact"
             >Contact
         </router-link>
-        <router-link class="xi-aside-router" to="/text"
-            >Text
-        </router-link>
+        <router-link class="xi-aside-router" to="/text">Text </router-link>
+        <router-link class="xi-aside-router" to="/button">Button 按钮 </router-link>
         {{ smallScreenModel }}
     </div>
 </template>
