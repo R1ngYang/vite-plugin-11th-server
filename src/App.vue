@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <xi-home></xi-home>
-        
+
     </div>
 </template>
 

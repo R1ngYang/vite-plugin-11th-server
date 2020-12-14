@@ -1,55 +1,54 @@
 <template>
-    <div class="xi-aside" :style="asideStyle">
-        <router-link class="xi-aside-router" to="/"> Home</router-link>
-        <router-link class="xi-aside-router" to="/contact"
-            >Contact
+    <div class="xi-aside">
+        <router-link class="xi-aside-router" :to="route.path" v-for="route in routes">
+            {{route.name}}
         </router-link>
-        <router-link class="xi-aside-router" to="/text">Text </router-link>
-        <router-link class="xi-aside-router" to="/button">Button 按钮 </router-link>
-        {{ smallScreenModel }}
     </div>
 </template>
 
 <script>
     import style from "../style/styleUtil";
-    import { computed, inject, ref } from "vue";
+    import {computed, inject, ref} from "vue";
+    import router from "../router";
 
     export default {
         name: "XiAside",
         setup() {
+
             const smallScreenModel = ref(inject("smallScreenModel"));
 
             const asideStyle = computed(() => {
-                const asideWidth = smallScreenModel.value
-                    ? "0px"
-                    : style.asideWidth;
-                return {
-                    "--aside-width": asideWidth,
-                    "--background": style.asideColor,
-                    "--header-height": style.headerHeight,
-                    "--shadow-color": style.background,
-                };
+                style.asideWidth = smallScreenModel.value ? "0px" : style.asideWidth;
+                return style;
             });
+
+            const routes = router.options.routes;
+
+
             return {
                 asideStyle,
                 smallScreenModel,
+
+                routes,
             };
         },
     };
 </script>
 
-<style>
+<style vars="asideStyle">
+
     .xi-aside {
-        width: var(--aside-width);
-        height: calc(100% - var(--header-height));
+        width: var(--asideWidth);
+        height: calc(100% - var(--headerHeight));
         background: var(--background);
-        box-shadow: 5px 3px 5px var(--shadow-color);
+        box-shadow: 5px 3px 5px var(--shadowColor);
         float: left;
         overflow: hidden;
         transition: width 0.5s ease;
         position: absolute;
-        top: var(--header-height);
+        top: var(--headerHeight);
     }
+
     .xi-aside-router {
         display: block;
     }
