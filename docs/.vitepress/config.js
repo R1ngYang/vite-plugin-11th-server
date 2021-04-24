@@ -26,7 +26,7 @@ function getComponentsSidebar() {
       text: '基础组件',
       children: [
         { text: '按钮', link: '/components/button/' },
-        { text: 'Getting Started', link: '/components/getting-started' },
+        { text: '输入框', link: '/components/input/' },
         { text: 'Configuration', link: '/components/configuration' },
         { text: 'Asset Handling', link: '/components/assets' },
         { text: 'Markdown Extensions', link: '/components/markdown' },

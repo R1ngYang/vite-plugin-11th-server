@@ -1,7 +1,7 @@
 <template>
     <div class="xi-docs-main">
         <div class="xi-docs-component">
-            <ButtonTest :is="is"></ButtonTest>
+            <component :is="is"></component>
         </div>
         <details class="xi-docs-details">
             <summary class="xi-docs-summary">查看代码</summary>
@@ -16,13 +16,24 @@
 
 import { defineProps, defineAsyncComponent, computed } from "@vue/runtime-core";
 const props = defineProps({
-    name: String
+    name: {
+        type: String,
+        default: () => ""
+    }
 })
 
-const is = computed(() => eval(`${props.name}`))
+const components: Record<string, unknown> = {
+    // button
+    "ButtonTest": defineAsyncComponent(() => import("./components/button/ButtonTest.vue")),
+    "ButtonSizeTest": defineAsyncComponent(() => import("./components/button/ButtonSizeTest.vue")),
+    "ButtonTypeTest": defineAsyncComponent(() => import("./components/button/ButtonTypeTest.vue")),
+    "ButtonDisabledTest": defineAsyncComponent(() => import("./components/button/ButtonDisabledTest.vue")),
 
-// button
-const ButtonTest = defineAsyncComponent(() => import("./components/button/button-test.vue"))
+    // input
+    "InputTest": defineAsyncComponent(() => import("./components/input/InputTest.vue")),
+}
+
+const is = computed(() => components[props.name])
 
 </script>
 
@@ -32,22 +43,22 @@ const ButtonTest = defineAsyncComponent(() => import("./components/button/button
     border-radius: 2px;
 }
 
-.xi-docs-component{
-    padding: 42px 24px 12px;
+.xi-docs-component {
+    padding: 32px 24px 12px;
 }
 
-.xi-docs-summary{
+.xi-docs-summary {
     border-top: 1px solid #d9d9d9;
     text-align: center;
     list-style: none;
 }
 
-.xi-docs-summary:hover{
-    background:#d9d9d9 ;
+.xi-docs-summary:hover {
+    background: #d9d9d9;
+    cursor: pointer;
 }
 
 .xi-docs-code {
     padding: 0px 24px;
-
 }
 </style>
