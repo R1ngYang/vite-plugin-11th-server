@@ -28,6 +28,11 @@ const components: Record<string, unknown> = {
     "ButtonSizeTest": defineAsyncComponent(() => import("./components/button/ButtonSizeTest.vue")),
     "ButtonTypeTest": defineAsyncComponent(() => import("./components/button/ButtonTypeTest.vue")),
     "ButtonDisabledTest": defineAsyncComponent(() => import("./components/button/ButtonDisabledTest.vue")),
+    
+    // Icon
+    "IconTest": defineAsyncComponent(() => import("./components/icon/IconTest.vue")),
+    "IconSizeTest": defineAsyncComponent(() => import("./components/icon/IconSizeTest.vue")),
+    "IconTypeTest": defineAsyncComponent(() => import("./components/icon/IconTypeTest.vue")),
 
     // input
     "InputTest": defineAsyncComponent(() => import("./components/input/InputTest.vue")),

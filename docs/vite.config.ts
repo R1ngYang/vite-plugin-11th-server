@@ -1,10 +1,7 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path';
-console.log( resolve(__dirname, '../src'))
+import svgLoader from 'vite-svg-loader'
 export default defineConfig({
-  resolve: {
-    alias: { '/@/': resolve(__dirname, '../src')}
-  },
   plugins: [
+    svgLoader()
   ],
 })
