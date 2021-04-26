@@ -20,4 +20,9 @@
 <<< @/components/button/ButtonDisabledTest.vue
 </Xi>
 
+## 图标按钮
+<Xi name="ButtonIconTest">
+<<< @/components/button/ButtonIconTest.vue
+</Xi>
+
 

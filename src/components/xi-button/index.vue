@@ -1,5 +1,6 @@
 <template>
     <button class="xi-button">
+        <xi-icon v-if="icon" :icon="icon"></xi-icon>
         <span v-if="placeholder">{{ placeholder }}</span>
         <slot></slot>
     </button>
@@ -8,6 +9,7 @@
 <script lang="ts" setup>
 import { computed, defineProps } from "@vue/runtime-core";
 import { sizeOptions, typeOptions } from "./options"
+import XiIcon from "../xi-icon/index.vue";
 
 const props = defineProps({
     placeholder: {
@@ -42,6 +44,12 @@ const props = defineProps({
      */
     disabled: {
         type: [Boolean]
+    },
+    /**
+     * 图标
+     */
+    icon: {
+        type: [String]
     }
 
     //todo 图标
