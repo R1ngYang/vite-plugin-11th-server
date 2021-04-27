@@ -27,8 +27,7 @@ function getComponentsSidebar() {
       text: '基础组件',
       children: [
         { text: '图标', link: '/components/icon/' },
-        { text: '按钮', link: '/components/button/' },
-        { text: '输入框', link: '/components/input/' }
+        { text: '按钮', link: '/components/button/' }
       ]
     },
     {

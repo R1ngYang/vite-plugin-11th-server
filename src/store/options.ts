@@ -1,11 +1,12 @@
-export const sizeOptions: Record<string, Record<string, unknown>> = {
-    small: { height: "24px" },
-    default: { height: "32px" },
-    large: { height: "40px" }
-}
+import { reactive } from '@vue/reactivity';
+export const sizeOptions: Record<string, Record<string, unknown>> = reactive({
+    small: { height: "24px", fontSize: "12px" },
+    default: { height: "32px", fontSize: "14px" },
+    large: { height: "40px", fontSize: "16px" }
+})
 
 
-export const typeOptions: Record<string, Record<string, unknown>> = {
+export const typeOptions: Record<string, Record<string, unknown>> = reactive({
     default: {
         v1: "#909399",
         v2: "#d3d4d6",
@@ -37,4 +38,4 @@ export const typeOptions: Record<string, Record<string, unknown>> = {
         v4: "#fab6b6",
     }
 
-}
+})

@@ -5,4 +5,9 @@
 <<< @/components/input/InputTest.vue
 </Xi>
 
+## 输入框大小
+<Xi name="InputSizeTest">
+<<< @/components/input/InputSizeTest.vue
+</Xi>
+
 

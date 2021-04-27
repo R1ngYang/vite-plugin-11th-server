@@ -8,7 +8,7 @@
   
 <script lang="ts" setup>
 import { computed, defineProps } from "@vue/runtime-core";
-import { sizeOptions, typeOptions } from "./options"
+import { sizeOptions, typeOptions } from "../../store/options"
 import XiIcon from "../xi-icon/index.vue";
 
 const props = defineProps({
