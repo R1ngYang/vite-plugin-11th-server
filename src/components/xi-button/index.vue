@@ -70,6 +70,9 @@ const typeStyle = computed(() => {
         colorHF: props.plain ? color.v4 : "#ffffff",
         backgroundHF: props.plain ? color.v3 : color.v4,
         borderColorHF: color.v4,
+        colorA: props.plain ? color.v4 : "#ffffff",
+        backgroundA: props.plain ? color.v3 : color.v4,
+        borderColorA: color.v4,
         cursor: " not-allowed"
     } : {
         color: props.plain ? color.v1 : "#ffffff",
@@ -78,6 +81,9 @@ const typeStyle = computed(() => {
         colorHF: props.plain ? "#ffffff" : "#ffffff",
         backgroundHF: props.plain ? color.v1 : color.v2,
         borderColorHF: props.plain ? color.v1 : color.v2,
+        colorA: props.plain ? color.v1 : "#ffffff",
+        backgroundA: props.plain ? color.v3 : color.v1,
+        borderColorA: color.v1,
         cursor: "pointer"
     }
 })
@@ -104,8 +110,8 @@ const typeStyle = computed(() => {
     color: v-bind("typeStyle.colorHF");
 }
 .xi-button:active {
-    border: 1px solid v-bind("typeStyle.borderColor");
-    background: v-bind("typeStyle.background");
-    color: v-bind("typeStyle.color");
+    border: 1px solid v-bind("typeStyle.borderColorA");
+    background: v-bind("typeStyle.backgroundA");
+    color: v-bind("typeStyle.colorA");
 }
 </style>
