@@ -17,7 +17,7 @@
 import { defineProps, defineAsyncComponent, computed } from "@vue/runtime-core";
 const props = defineProps({
     name: {
-        type: String,
+        type: [String],
         default: () => ""
     }
 })
@@ -38,6 +38,7 @@ const components: Record<string, unknown> = {
     // input
     "InputTest": defineAsyncComponent(() => import("./components/input/InputTest.vue")),
     "InputSizeTest": defineAsyncComponent(() => import("./components/input/InputSizeTest.vue")),
+    "InputIconTest": defineAsyncComponent(() => import("./components/input/InputIconTest.vue")),
 }
 
 const is = computed(() => components[props.name])

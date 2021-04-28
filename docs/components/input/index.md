@@ -10,4 +10,9 @@
 <<< @/components/input/InputSizeTest.vue
 </Xi>
 
+## 图标
+<Xi name="InputIconTest">
+<<< @/components/input/InputIconTest.vue
+</Xi>
+
 
