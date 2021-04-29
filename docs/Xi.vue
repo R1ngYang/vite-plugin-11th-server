@@ -34,6 +34,7 @@ const components: Record<string, unknown> = {
     "IconTest": defineAsyncComponent(() => import("./components/icon/IconTest.vue")),
     "IconSizeTest": defineAsyncComponent(() => import("./components/icon/IconSizeTest.vue")),
     "IconTypeTest": defineAsyncComponent(() => import("./components/icon/IconTypeTest.vue")),
+    "IconClickTest": defineAsyncComponent(() => import("./components/icon/IconClickTest.vue")),
 
     // input
     "InputTest": defineAsyncComponent(() => import("./components/input/InputTest.vue")),
