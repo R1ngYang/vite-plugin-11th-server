@@ -1,19 +1,31 @@
 <template>
     <div class="xi-input-main">
         <xi-icon class="xi-input-prefix-icon" :size="fontSize" :icon="prefixIcon" v-if="prefixIcon"></xi-icon>
-        <input v-bind="$attrs" v-model="modelValue" class="xi-input-core" />
+        <input v-bind="$attrs" v-model="modelValue" class="xi-input-core" :disabled="disabled" />
         <xi-icon class="xi-input-suffix-icon" :size="fontSize" :icon="suffixIcon" v-if="suffixIcon"></xi-icon>
+        <xi-icon
+            class="xi-input-suffix-icon"
+            :size="fontSize"
+            :icon="suffixIcon"
+            v-if="showClearIcon"
+            @click="clear"
+        ></xi-icon>
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps } from "vue";
+import { computed, defineProps, useContext } from "vue";
 import { sizeOptions, typeOptions } from "../../store/options";
 import { XiIcon } from "../11th"
+
+const { emit } = useContext()
 
 const props = defineProps({
     modelValue: {
         type: [String, Number],
+    },
+    disabled: {
+        type: [Boolean]
     },
     size: {
         type: [String],
@@ -24,6 +36,10 @@ const props = defineProps({
     },
     suffixIcon: {
         type: [String]
+    },
+    // 清除
+    clearable: {
+        type: [Boolean]
     }
 })
 
@@ -45,12 +61,30 @@ const corePaddingLeft = computed(() => props.prefixIcon ? height.value : fontSiz
 const corePaddingRight = computed(() => props.suffixIcon ? height.value : fontSize.value)
 
 const typeStyle = computed(() => {
-    return {
+    return props.disabled ? {
+        border: typeOptions["default"].v2,
+        borderH: typeOptions["default"].v2,
+        borderF: typeOptions["default"].v2,
+        background: typeOptions["default"].v3,
+        cursor: "not-allowed"
+
+    } : {
         border: typeOptions["default"].v2,
         borderH: typeOptions["default"].v1,
-        borderF: typeOptions["primary"].v1
+        borderF: typeOptions["primary"].v1,
+        background: "#fff",
+        cursor: "text"
+
     }
 })
+
+/** 清除 */
+
+const showClearIcon = computed(() => props.clearable)
+
+ const clear = () => {
+    emit("update:modelValue", "")
+}
 
 </script>
 
@@ -63,7 +97,7 @@ const typeStyle = computed(() => {
 }
 .xi-input-core {
     -webkit-appearance: none;
-    background-color: #fff;
+    background-color: v-bind("typeStyle.background");
     background-image: none;
     border-radius: 4px;
     border: 1px solid v-bind("typeStyle.border");
@@ -77,6 +111,7 @@ const typeStyle = computed(() => {
     height: 100%;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     width: 100%;
+    cursor: v-bind("typeStyle.cursor");
 }
 
 .xi-input-core:hover {

@@ -5,6 +5,11 @@
 <<< @/components/input/InputTest.vue
 </Xi>
 
+## 禁用状态
+<Xi name="InputDisabledTest">
+<<< @/components/input/InputDisabledTest.vue
+</Xi>
+
 ## 输入框大小
 <Xi name="InputSizeTest">
 <<< @/components/input/InputSizeTest.vue
@@ -13,6 +18,11 @@
 ## 图标
 <Xi name="InputIconTest">
 <<< @/components/input/InputIconTest.vue
+</Xi>
+
+## 清除
+<Xi name="InputClearabledTest">
+<<< @/components/input/InputClearabledTest.vue
 </Xi>
 
 
