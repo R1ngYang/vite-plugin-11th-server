@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { computed, defineProps } from '@vue/runtime-core';
-import Icon from '../../assets/icon/exports'
+import Icon from './export-icon'
 const props = defineProps({
     icon: {
         type: [String],

@@ -16,6 +16,11 @@
 <<< @/components/icon/IconSizeTest.vue
 </Xi>
 
+## 图标颜色
+<Xi name="IconColorTest">
+<<< @/components/icon/IconColorTest.vue
+</Xi>
+
 ## 图标点击事件
 <Xi name="IconClickTest">
 <<< @/components/icon/IconClickTest.vue
