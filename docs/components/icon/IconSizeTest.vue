@@ -1,5 +1,5 @@
 <template>
-    <xi-icon :size="30"></xi-icon>
+        <xi-icon :size="30"></xi-icon>
 </template>
 
 <script setup lang="ts">

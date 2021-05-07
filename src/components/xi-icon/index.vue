@@ -1,5 +1,7 @@
 <template>
-    <Component :is="icon" class="xi-icon-main" />
+    <div class="xi-icon-main">
+        <Component :is="icon" />
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +25,10 @@ const size = computed(() => `${parseInt(props.size + "")}px`)
 
 <style scoped>
 .xi-icon-main {
+    display: inline-block;
     font-size: v-bind(size);
-    vertical-align: -.125em;
+    height: v-bind(size);
+    line-height: v-bind(size);
+    vertical-align: -0.125em;
 }
 </style>

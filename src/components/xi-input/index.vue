@@ -18,7 +18,7 @@ import { computed, defineProps, useContext } from "vue";
 import { sizeOptions, typeOptions } from "../../store/options";
 import { XiIcon } from "../11th"
 
-const { emit } = useContext()
+const { emit, expose } = useContext()
 
 const props = defineProps({
     modelValue: {
@@ -82,9 +82,11 @@ const typeStyle = computed(() => {
 
 const showClearIcon = computed(() => props.clearable)
 
- const clear = () => {
+const clear = () => {
     emit("update:modelValue", "")
 }
+
+expose({ clear })
 
 </script>
 

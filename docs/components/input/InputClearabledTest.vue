@@ -16,8 +16,7 @@ import { XiButton } from "../11th"
 ref: value = ""
 const inputRef = ref();
 const handleClear = () => {
-    // todo
-    console.log(inputRef.value)
+    inputRef.value.clear()
 }
 </script>
 

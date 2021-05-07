@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { computed, defineProps } from "@vue/runtime-core";
 import { sizeOptions, typeOptions } from "../../store/options"
-import {XiIcon} from "../11th";
+import { XiIcon } from "../11th";
 
 const props = defineProps({
     placeholder: {
@@ -57,7 +57,17 @@ const props = defineProps({
 
 // 处理大小
 const size = computed(() => {
-    return sizeOptions[props.size] || sizeOptions["default"]
+    const option = sizeOptions[props.size] || sizeOptions["default"]
+    return {
+        height: option.height,
+        fontSize: `${parseInt(option.fontSize) - 2}px`
+    }
+})
+
+const padding = computed(() => {
+    const bottonHeight = parseInt(size.value.height);
+    const fontHeight = parseInt(size.value.fontSize);
+    return `${(bottonHeight-fontHeight)/2}px`
 })
 
 // 处理样式
@@ -95,12 +105,14 @@ const typeStyle = computed(() => {
 .xi-button {
     outline: 0;
     width: v-bind("square?size.height:''");
+    font-size: v-bind("size.fontSize");
     height: v-bind("size.height");
     border-radius: v-bind("round?size.height:'2px'");
     border: 1px solid v-bind("typeStyle.borderColor");
     background: v-bind("typeStyle.background");
     color: v-bind("typeStyle.color");
     margin: 0 5px;
+    padding: 0 v-bind("square?'':padding");
     cursor: v-bind("typeStyle.cursor");
 }
 .xi-button:hover,
