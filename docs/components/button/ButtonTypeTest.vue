@@ -39,6 +39,14 @@
         <xi-button type="success" square round>成</xi-button>
         <xi-button type="warning" square round>警</xi-button>
         <xi-button type="danger" square round>危</xi-button>
+        <br />
+        <br />
+        <span>文字按钮</span>
+        <xi-button text>默认按钮</xi-button>
+        <xi-button type="primary" text>主要按钮</xi-button>
+        <xi-button type="success" text>成功按钮</xi-button>
+        <xi-button type="warning" text>警告按钮</xi-button>
+        <xi-button type="danger" text>危险按钮</xi-button>
     </div>
 </template>
   

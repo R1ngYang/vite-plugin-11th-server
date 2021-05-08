@@ -3,6 +3,9 @@
         <xi-button type="primary" icon="xi-icon-amiming">普通按钮</xi-button>
         <br>
         <br>
+        <xi-button type="primary" icon="xi-icon-amiming" text>普通按钮</xi-button>
+        <br>
+        <br>
         <xi-button type="primary" icon="xi-icon-amiming" square ></xi-button>
     </div>
 </template>

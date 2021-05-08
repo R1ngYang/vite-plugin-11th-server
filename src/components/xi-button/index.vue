@@ -1,6 +1,6 @@
 <template>
     <button class="xi-button">
-        <xi-icon v-if="icon" :icon="icon"></xi-icon>
+        <xi-icon v-if="icon" :icon="icon" :size="size.fontSize"></xi-icon>
         <span v-if="placeholder">{{ placeholder }}</span>
         <slot></slot>
     </button>
@@ -40,6 +40,12 @@ const props = defineProps({
         type: [Boolean]
     },
     /**
+     * 文字
+     */
+    text: {
+        type: [Boolean]
+    },
+    /**
      * 禁用
      */
     disabled: {
@@ -67,12 +73,39 @@ const size = computed(() => {
 const padding = computed(() => {
     const bottonHeight = parseInt(size.value.height);
     const fontHeight = parseInt(size.value.fontSize);
-    return `${(bottonHeight-fontHeight)/2}px`
+    return `${(bottonHeight - fontHeight) / 2}px`
 })
 
 // 处理样式
 const typeStyle = computed(() => {
     const color = typeOptions[props.type]
+    if (props.text) {
+        return props.disabled ? {
+            color: color.v4,
+            background: "rgba(255,255,255,0)",
+            borderColor: "rgba(255,255,255,0)",
+            colorHF: color.v4,
+            backgroundHF: "rgba(255,255,255,0)",
+            borderColorHF: "rgba(255,255,255,0)",
+            colorA: color.v4,
+            backgroundA: "rgba(255,255,255,0)",
+            borderColorA: "rgba(255,255,255,0)",
+            cursor: " not-allowed"
+        } : {
+            color: color.v1,
+            background: "rgba(255,255,255,0)",
+            borderColor: "rgba(255,255,255,0)",
+            colorHF: color.v2,
+            backgroundHF: "rgba(255,255,255,0)",
+            borderColorHF: "rgba(255,255,255,0)",
+            colorA: color.v1,
+            backgroundA: "rgba(255,255,255,0)",
+            borderColorA: "rgba(255,255,255,0)",
+            cursor: "pointer"
+        }
+
+    }
+
     return props.disabled ? {
         color: props.plain ? color.v4 : "#ffffff",
         background: props.plain ? color.v3 : color.v4,

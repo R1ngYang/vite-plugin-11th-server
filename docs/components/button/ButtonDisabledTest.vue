@@ -19,6 +19,13 @@
         <xi-button type="success" round disabled>成功按钮</xi-button>
         <xi-button type="warning" round disabled>警告按钮</xi-button>
         <xi-button type="danger" round disabled>危险按钮</xi-button>
+        <br />
+        <br />
+        <xi-button text disabled>默认按钮</xi-button>
+        <xi-button type="primary" text disabled>主要按钮</xi-button>
+        <xi-button type="success" text disabled>成功按钮</xi-button>
+        <xi-button type="warning" text disabled>警告按钮</xi-button>
+        <xi-button type="danger" text disabled>危险按钮</xi-button>
     </div>
 </template>
   

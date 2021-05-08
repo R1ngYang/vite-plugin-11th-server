@@ -1,13 +1,22 @@
 <template>
     <div class="xi-input-main">
         <xi-icon class="xi-input-prefix-icon" :size="fontSize" :icon="prefixIcon" v-if="prefixIcon"></xi-icon>
-        <input v-bind="$attrs" v-model="modelValue" class="xi-input-core" :disabled="disabled" />
+        <input
+            v-bind="$attrs"
+            v-model="modelValue"
+            class="xi-input-core"
+            :disabled="disabled"
+            :readonly="readonly"
+        />
         <xi-icon class="xi-input-suffix-icon" :size="fontSize" :icon="suffixIcon" v-if="suffixIcon"></xi-icon>
         <xi-icon
             class="xi-input-suffix-icon"
+            :class="clearing ? 'xi-input-clear-icon-active' : 'xi-input-clear-icon'"
             :size="fontSize"
-            :icon="suffixIcon"
+            icon="xi-icon-close-one"
             v-if="showClearIcon"
+            @mousedown="clearing = !clearing"
+            @mouseup="clearing = !clearing"
             @click="clear"
         ></xi-icon>
     </div>
@@ -25,6 +34,9 @@ const props = defineProps({
         type: [String, Number],
     },
     disabled: {
+        type: [Boolean]
+    },
+    readonly: {
         type: [Boolean]
     },
     size: {
@@ -67,20 +79,22 @@ const typeStyle = computed(() => {
         borderF: typeOptions["default"].v2,
         background: typeOptions["default"].v3,
         cursor: "not-allowed"
-
     } : {
         border: typeOptions["default"].v2,
         borderH: typeOptions["default"].v1,
         borderF: typeOptions["primary"].v1,
         background: "#fff",
-        cursor: "text"
-
+        cursor: "text",
+        clearColor: typeOptions["primary"].v1,
+        clearColorH: typeOptions["primary"].v2,
     }
 })
 
 /** 清除 */
 
-const showClearIcon = computed(() => props.clearable)
+const showClearIcon = computed(() => props.clearable
+    && !props.disabled && !props.readonly && props.modelValue)
+ref: clearing = false
 
 const clear = () => {
     emit("update:modelValue", "")
@@ -132,5 +146,14 @@ expose({ clear })
     position: absolute;
     top: v-bind(suffixTop + "px");
     right: v-bind(suffixRight + "px");
+}
+
+.xi-input-clear-icon,
+.xi-input-clear-icon-active {
+    color: v-bind("typeStyle.clearColor");
+}
+
+.xi-input-clear-icon:hover {
+    color: v-bind("typeStyle.clearColorH");
 }
 </style>
