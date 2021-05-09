@@ -20,15 +20,22 @@ const props = defineProps({
 
 const icon = (Icon as Record<string, unknown>)[props.icon]
 
-const size = computed(() => `${parseInt(props.size + "")}px`)
+const size = computed(() => {
+    const buttonSize = `${parseInt(props.size + "")}px`
+    return {
+        fontSize: buttonSize,
+        height: buttonSize,
+        lineHeight: buttonSize,
+    }
+})
 </script>
 
 <style scoped>
 .xi-icon-main {
     display: inline-block;
-    font-size: v-bind(size);
-    height: v-bind(size);
-    line-height: v-bind(size);
+    font-size: v-bind("size.fontSize");
+    height: v-bind("size.height");
+    line-height: v-bind("size.lineHeight");
     vertical-align: -0.125em;
 }
 </style>
