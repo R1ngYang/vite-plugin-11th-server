@@ -78,13 +78,11 @@ const typeStyle = computed(() => {
         borderH: typeOptions["default"].v2,
         borderF: typeOptions["default"].v2,
         background: typeOptions["default"].v3,
-        cursor: "not-allowed"
     } : {
         border: typeOptions["default"].v2,
         borderH: typeOptions["default"].v1,
         borderF: typeOptions["primary"].v1,
         background: "#fff",
-        cursor: "text",
         clearColor: typeOptions["primary"].v1,
         clearColorH: typeOptions["primary"].v2,
     }
@@ -127,7 +125,7 @@ expose({ clear })
     height: 100%;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     width: 100%;
-    cursor: v-bind("typeStyle.cursor");
+    cursor: v-bind("disabled?'not-allowed':'text'");
 }
 
 .xi-input-core:hover {

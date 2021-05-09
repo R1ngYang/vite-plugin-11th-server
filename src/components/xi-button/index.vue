@@ -10,6 +10,7 @@
 import { computed, defineProps } from "@vue/runtime-core";
 import { sizeOptions, typeOptions } from "../../store/options"
 import { XiIcon } from "../11th";
+import { getButtonStyle } from "./buttonStyle";
 
 const props = defineProps({
     placeholder: {
@@ -25,31 +26,36 @@ const props = defineProps({
         default: () => "default"
     },
     plain: {
-        type: [Boolean]
+        type: [Boolean],
+        default: () => false
     },
     /**
      * 圆角
      */
     round: {
-        type: [Boolean]
+        type: [Boolean],
+        default: () => false
     },
     /**
      * 方形
      */
     square: {
-        type: [Boolean]
+        type: [Boolean],
+        default: () => false
     },
     /**
      * 文字
      */
     text: {
-        type: [Boolean]
+        type: [Boolean],
+        default: () => false
     },
     /**
      * 禁用
      */
     disabled: {
-        type: [Boolean]
+        type: [Boolean],
+        default: () => false
     },
     /**
      * 图标
@@ -58,7 +64,6 @@ const props = defineProps({
         type: [String]
     }
 
-    //todo 图标
 })
 
 // 处理大小
@@ -77,65 +82,20 @@ const padding = computed(() => {
 })
 
 // 处理样式
-const typeStyle = computed(() => {
-    const color = typeOptions[props.type]
-    if (props.text) {
-        return props.disabled ? {
-            color: color.v4,
-            background: "rgba(255,255,255,0)",
-            borderColor: "rgba(255,255,255,0)",
-            colorHF: color.v4,
-            backgroundHF: "rgba(255,255,255,0)",
-            borderColorHF: "rgba(255,255,255,0)",
-            colorA: color.v4,
-            backgroundA: "rgba(255,255,255,0)",
-            borderColorA: "rgba(255,255,255,0)",
-            cursor: " not-allowed"
-        } : {
-            color: color.v1,
-            background: "rgba(255,255,255,0)",
-            borderColor: "rgba(255,255,255,0)",
-            colorHF: color.v2,
-            backgroundHF: "rgba(255,255,255,0)",
-            borderColorHF: "rgba(255,255,255,0)",
-            colorA: color.v1,
-            backgroundA: "rgba(255,255,255,0)",
-            borderColorA: "rgba(255,255,255,0)",
-            cursor: "pointer"
-        }
-
-    }
-
-    return props.disabled ? {
-        color: props.plain ? color.v4 : "#ffffff",
-        background: props.plain ? color.v3 : color.v4,
-        borderColor: color.v4,
-        colorHF: props.plain ? color.v4 : "#ffffff",
-        backgroundHF: props.plain ? color.v3 : color.v4,
-        borderColorHF: color.v4,
-        colorA: props.plain ? color.v4 : "#ffffff",
-        backgroundA: props.plain ? color.v3 : color.v4,
-        borderColorA: color.v4,
-        cursor: " not-allowed"
-    } : {
-        color: props.plain ? color.v1 : "#ffffff",
-        background: props.plain ? color.v3 : color.v1,
-        borderColor: color.v1,
-        colorHF: props.plain ? "#ffffff" : "#ffffff",
-        backgroundHF: props.plain ? color.v1 : color.v2,
-        borderColorHF: props.plain ? color.v1 : color.v2,
-        colorA: props.plain ? color.v1 : "#ffffff",
-        backgroundA: props.plain ? color.v3 : color.v1,
-        borderColorA: color.v1,
-        cursor: "pointer"
-    }
-})
+const typeStyle = computed(() => getButtonStyle(props.type, props.text, props.plain, props.disabled))
 
 
 </script>
 
 <style scoped>
-.xi-button {
+.xi-button:hover,
+.xi-button:focus {
+    border: 1px solid v-bind("typeStyle.borderColorHF");
+    background: v-bind("typeStyle.backgroundHF");
+    color: v-bind("typeStyle.colorHF");
+}
+.xi-button,
+.xi-button:active {
     outline: 0;
     width: v-bind("square?size.height:''");
     font-size: v-bind("size.fontSize");
@@ -146,17 +106,6 @@ const typeStyle = computed(() => {
     color: v-bind("typeStyle.color");
     margin: 0 5px;
     padding: 0 v-bind("square?'':padding");
-    cursor: v-bind("typeStyle.cursor");
-}
-.xi-button:hover,
-.xi-button:focus {
-    border: 1px solid v-bind("typeStyle.borderColorHF");
-    background: v-bind("typeStyle.backgroundHF");
-    color: v-bind("typeStyle.colorHF");
-}
-.xi-button:active {
-    border: 1px solid v-bind("typeStyle.borderColorA");
-    background: v-bind("typeStyle.backgroundA");
-    color: v-bind("typeStyle.colorA");
+    cursor: v-bind("disabled?'not-allowed':'pointer'");
 }
 </style>
