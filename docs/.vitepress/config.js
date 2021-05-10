@@ -10,7 +10,7 @@ module.exports = {
     lastUpdated: 'Last Updated',
 
     nav: [
-      { text: 'Components', link: '/', activeMatch: '^/$|^/components/' },
+      { text: 'Components', link: '/components/', activeMatch: '^/$|^/components/' },
       { text: 'gethub', link: 'https://github.com/R1ngYang/11th' },
     ],
 
