@@ -30,6 +30,9 @@ const components: Record<string, unknown> = {
     "ButtonDisabledTest": defineAsyncComponent(() => import("./components/button/ButtonDisabledTest.vue")),
     "ButtonIconTest": defineAsyncComponent(() => import("./components/button/ButtonIconTest.vue")),
     
+    // button
+    "ButtonGroupTest": defineAsyncComponent(() => import("./components/button-group/ButtonGroupTest.vue")),
+
     // Icon
     "IconTest": defineAsyncComponent(() => import("./components/icon/IconTest.vue")),
     "IconSizeTest": defineAsyncComponent(() => import("./components/icon/IconSizeTest.vue")),
