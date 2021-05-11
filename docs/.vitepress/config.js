@@ -34,7 +34,8 @@ function getComponentsSidebar() {
     {
       text: '表单组件',
       children: [
-        { text: '输入框', link: '/components/input/' }
+        { text: '输入框', link: '/components/input/' },
+        { text: '数字输入框', link: '/components/input-number/' },
       ]
     }
   ]

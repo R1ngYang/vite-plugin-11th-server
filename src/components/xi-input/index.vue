@@ -103,6 +103,15 @@ expose({ clear })
 </script>
 
 <style scoped>
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .xi-input-main {
     position: relative;
     width: 180px;

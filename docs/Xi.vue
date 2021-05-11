@@ -46,6 +46,10 @@ const components: Record<string, unknown> = {
     "InputSizeTest": defineAsyncComponent(() => import("./components/input/InputSizeTest.vue")),
     "InputIconTest": defineAsyncComponent(() => import("./components/input/InputIconTest.vue")),
     "InputClearabledTest": defineAsyncComponent(() => import("./components/input/InputClearabledTest.vue")),
+
+    // input-number
+    "InputNumberTest": defineAsyncComponent(() => import("./components/input-number/InputNumberTest.vue")),
+
 }
 
 const is = computed(() => components[props.name])
