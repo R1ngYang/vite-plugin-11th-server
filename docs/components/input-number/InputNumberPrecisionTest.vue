@@ -1,6 +1,6 @@
 <template>
     <div>
-        <xi-input-number class="xi-input-number-core" v-model="value"></xi-input-number>
+        <xi-input-number class="xi-input-number-core" v-model="value" :precision="2"></xi-input-number>
         {{ value }}
     </div>
 </template>

@@ -49,6 +49,8 @@ const components: Record<string, unknown> = {
 
     // input-number
     "InputNumberTest": defineAsyncComponent(() => import("./components/input-number/InputNumberTest.vue")),
+    "InputNumberTestMinMax": defineAsyncComponent(() => import("./components/input-number/InputNumberTestMinMax.vue")),
+    "InputNumberPrecisionTest": defineAsyncComponent(() => import("./components/input-number/InputNumberPrecisionTest.vue")),
 
 }
 
