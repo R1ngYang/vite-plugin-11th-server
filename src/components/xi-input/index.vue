@@ -1,10 +1,11 @@
 <template>
-    <div class="xi-input-main">
+    <div class="xi-input-main" ref="inputMainTag">
         <xi-icon class="xi-input-prefix-icon" :size="fontSize" :icon="prefixIcon" v-if="prefixIcon"></xi-icon>
         <input
             v-bind="$attrs"
             v-model="modelValue"
             class="xi-input-core"
+            ref="inputTag"
             :disabled="disabled"
             :readonly="readonly"
         />
@@ -23,9 +24,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, useContext } from "vue";
+import { computed, defineProps, onMounted, reactive, useContext, watch } from "vue";
 import { sizeOptions, typeOptions } from "../../store/options";
 import { XiIcon } from "../11th"
+import { XiInputExt } from "../xi-input-ext/XiInputExt";
 
 const { emit, expose } = useContext()
 
@@ -52,6 +54,9 @@ const props = defineProps({
     // 清除
     clearable: {
         type: [Boolean]
+    },
+
+    ext: {
     }
 })
 
@@ -98,12 +103,23 @@ const clear = () => {
     emit("update:modelValue", "")
 }
 
+
+/** 输入框最外层标签 */
+ref: inputMainTag = ""
+
+/** 输入框标签 */
+ref: inputTag = null as Element | null;
+ref: inputExt = null as any;
+watch(() => props.ext, () => inputExt && inputExt.setExt(props.ext))
+onMounted(() => props.ext && (inputExt = XiInputExt(inputTag, props.ext)))
+
+/** 导出 */
 expose({ clear })
+
 
 </script>
 
 <style scoped>
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

@@ -4,3 +4,6 @@ export const XiButtonGroup = defineAsyncComponent(() => import("../../src/compon
 export const XiIcon = defineAsyncComponent(() => import("../../src/components/xi-icon/index.vue"));
 export const XiInput = defineAsyncComponent(() => import("../../src/components/xi-input/index.vue"));
 export const XiInputNumber = defineAsyncComponent(() => import("../../src/components/xi-input-number/index.vue"));
+
+// import { XiInputExt } from "../../src/components/xi-input-ext/";
+// export { XiInputExt };

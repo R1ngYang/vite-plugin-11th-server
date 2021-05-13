@@ -37,6 +37,12 @@ function getComponentsSidebar() {
         { text: '输入框', link: '/components/input/' },
         { text: '数字输入框', link: '/components/input-number/' },
       ]
+    },
+    {
+      text: '工具',
+      children: [
+        { text: '输入框拓展', link: '/components/input-ext/' },
+      ]
     }
   ]
 }
