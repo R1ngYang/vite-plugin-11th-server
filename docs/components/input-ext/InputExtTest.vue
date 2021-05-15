@@ -1,18 +1,21 @@
 <template>
     <div>
-        <xi-input :ext="ext" @change="handleChange"></xi-input>
+        <xi-input :ext="ext"></xi-input>
     </div>
 </template>
 
 <script setup lang="ts">
 import { XiInput } from "../11th"
-import { h, watch } from "vue"
+import { h, ref, watch } from "vue"
 
-ref: ext = h("div", [123123])
+import Aaa from "./Aaa.vue"
+ref: a = ""
 
-const handleChange = () => {
-    ext = h("div", [1])
-}
+ref: ext = h(Aaa, { a: a })
+
+window.setTimeout(()=>{
+    console.log(ext)
+},456)
 
 </script>
 

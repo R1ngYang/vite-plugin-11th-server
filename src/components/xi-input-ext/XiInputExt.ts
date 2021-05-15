@@ -9,7 +9,9 @@ class InputExt {
             this.vm && this.vm.show();
         });
         tag.addEventListener("blur", () => {
-            this.vm && this.vm.close()
+            if (!this.vm.cant) {
+                this.vm && this.vm.close()
+            }
         });
 
         const parent = tag.parentElement;
