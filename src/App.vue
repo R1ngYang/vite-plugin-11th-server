@@ -1,10 +1,18 @@
 <template>
   <div>
-    <xi-input></xi-input>
+    <xi-layout type="table" :style-json="styleJson"></xi-layout>
   </div>
 </template>
 
 <script lang="ts" setup>
-import XiInput from "./components/xi-input/index.vue"
+import XiLayout from "./components/xi-layout/index.vue"
+
+ref: styleJson = [
+  {
+    xType: "base",
+    cellspacing: "0",
+    cellpadding: "0"
+  }
+]
 
 </script>
