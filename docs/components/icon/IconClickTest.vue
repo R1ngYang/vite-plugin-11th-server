@@ -7,9 +7,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "@vue/reactivity";
 import { XiIcon } from "../11th"
 
-ref: value = 0
+const value = ref(0)
 </script>
 
 <style scoped>

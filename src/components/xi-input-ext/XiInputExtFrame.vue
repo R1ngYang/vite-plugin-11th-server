@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineComponent, defineProps, h, nextTick } from "vue";
+import { computed, defineComponent, defineProps, h, nextTick, ref } from "vue";
 import { typeOptions } from "../../store/options";
 
 const props = defineProps({
@@ -20,27 +20,27 @@ const props = defineProps({
     },
 })
 
-ref: visible = false;
-ref: cant = false;
+const visible = ref(false);
+const cant = ref(false);
 
 const close = () => {
     console.log(2)
-    visible = false;
+    visible.value = false;
 }
 
 const show = () => {
     const tag = props.tag as Element;
     console.log(tag?.getBoundingClientRect())
-    visible = true;
+    visible.value = true;
 }
 
 const handleMainClick = () => {
-    cant = true
+    cant.value = true
     console.log(1)
 }
 
 
-ref: position = "bottom"
+const position = ref("bottom")
 
 
 const inputSize = computed(() => {
@@ -50,7 +50,7 @@ const inputSize = computed(() => {
 })
 
 const size = computed(() => {
-    return position === "bottom" ? {
+    return position.value === "bottom" ? {
         top: `${inputSize.value.top + inputSize.value.height - 2}px`,
         left: `${inputSize.value.left}px`,
         width: `${inputSize.value.width}px`,
@@ -69,13 +69,13 @@ const style = computed(() => {
     }
 })
 
-ref: ext = null as any;
-ref: showComponent = true;
+const ext = ref<any>(null);
+const showComponent = ref(true);
 const setExt = (newExt: any) => {
-    ext = defineComponent(newExt);
-    showComponent = false;
+    ext.value = defineComponent(newExt);
+    showComponent.value = false;
     nextTick(() => {
-        showComponent = true;
+        showComponent.value = true;
 
     })
 

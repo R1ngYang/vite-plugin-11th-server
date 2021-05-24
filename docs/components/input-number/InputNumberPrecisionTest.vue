@@ -6,8 +6,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "@vue/reactivity";
 import { XiInputNumber } from "../11th"
-ref: value = undefined;
+const value = ref(undefined);
 
 
 </script>

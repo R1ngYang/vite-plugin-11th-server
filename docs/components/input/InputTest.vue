@@ -4,8 +4,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "@vue/reactivity";
 import { XiInput } from "../11th"
-ref: value = "";
+const value = ref("");
 </script>
 
 <style scoped>

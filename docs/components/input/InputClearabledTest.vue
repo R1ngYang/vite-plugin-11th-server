@@ -20,7 +20,7 @@ import { ref } from "@vue/reactivity";
 import { XiInput } from "../11th"
 import { XiButton } from "../11th"
 
-ref: value = ""
+const value = ref("")
 const inputRef = ref();
 const handleClear = () => {
     inputRef.value.clear()

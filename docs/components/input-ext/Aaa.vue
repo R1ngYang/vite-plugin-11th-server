@@ -2,11 +2,12 @@
     <div @click="handleClick">{{a}}</div>
 </template>
 
-<script setup lang="ts">
-ref: a = 123;
+<script setup lang="ts">import { ref } from '@vue/reactivity';
+
+const a = ref(123);
 
 const handleClick = ()=>{
-    a = 666
+    a.value = 666
 }
 
 </script>

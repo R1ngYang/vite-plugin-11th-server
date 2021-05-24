@@ -13,25 +13,25 @@ import { reactive } from '@vue/reactivity';
 import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
 
-  ref: a = 456
+  const a = ref(456)
 
-  ref: cd = 789
+  const cd = ref(789)
 
   const c = 123
 
-  ref: d = a 
+  const d = ref(a.value) 
 
- ref: ccc = computed(()=>{
-    return `${a}`
+ const ccc = computed(()=>{
+    return `${a.value}`
   }) 
   
-  const b= reactive({ab:ccc})  as {ab:string,ac:string}
+  const b= reactive({ab:ccc.value})  as {ab:string,ac:string}
 
 
-  ref: e = 1
+  const e = ref(1)
   onMounted(()=>{
-    e = 789;
-    a = a+789
+    e.value = 789;
+    a.value = a.value+789
     b.ac = "789"
 
   })

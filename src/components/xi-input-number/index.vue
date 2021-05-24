@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { XiInput } from "../11th"
-import { defineProps, useContext } from "vue"
+import { defineProps, ref, useContext } from "vue"
 const { emit } = useContext()
 
 const props = defineProps({
@@ -27,12 +27,12 @@ const props = defineProps({
     }
 })
 
-ref: inputValue = props.modelValue as string | number | undefined;
+const inputValue = ref<string | number | undefined>(props.modelValue);
 
 const updateModelValue = (v: string | number | undefined) => {
     const value = parseFloat(v as string);
     const result = isNaN(value) ? undefined : value;
-    inputValue = /^(-)?[0-9]*(\.)?[0-9]*$/.test(`${v}`) ? v : result;
+    inputValue.value = /^(-)?[0-9]*(\.)?[0-9]*$/.test(`${v}`) ? v : result;
     emit('update:modelValue', result)
 }
 
@@ -48,10 +48,10 @@ const handleBlur = () => {
 
     // 处理精度
     if (result && props.precision) {
-        inputValue = result.toFixed(props.precision);
-        result = parseFloat(inputValue);
+        inputValue.value = result.toFixed(props.precision);
+        result = parseFloat(inputValue.value);
     } else {
-        inputValue = result?.toString();
+        inputValue.value = result?.toString();
     }
 
     // 处理NaN

@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, onMounted, reactive, useContext, watch } from "vue";
+import { computed, defineProps, onMounted, reactive, ref, useContext, watch } from "vue";
 import { sizeOptions, typeOptions } from "../../store/options";
 import { XiIcon } from "../11th"
 import { XiInputExt } from "../xi-input-ext/XiInputExt";
@@ -97,7 +97,7 @@ const typeStyle = computed(() => {
 
 const showClearIcon = computed(() => props.clearable
     && !props.disabled && !props.readonly && props.modelValue)
-ref: clearing = false
+const clearing = ref(false)
 
 const clear = () => {
     emit("update:modelValue", "")
@@ -105,13 +105,13 @@ const clear = () => {
 
 
 /** 输入框最外层标签 */
-ref: inputMainTag = ""
+const inputMainTag = ref("")
 
 /** 输入框标签 */
-ref: inputTag = null as Element | null;
-ref: inputExt = null as any;
-watch(() => props.ext, () => inputExt && inputExt.setExt(props.ext))
-onMounted(() => props.ext && (inputExt = XiInputExt(inputTag, props.ext)))
+const inputTag = ref<Element | null>(null);
+const inputExt = ref<any>(null);
+watch(() => props.ext, () => inputExt.value && inputExt.value.setExt(props.ext))
+onMounted(() => props.ext && (inputExt.value = XiInputExt(inputTag.value, props.ext)))
 
 /** 导出 */
 expose({ clear })

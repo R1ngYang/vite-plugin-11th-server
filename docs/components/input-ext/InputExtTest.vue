@@ -9,12 +9,12 @@ import { XiInput } from "../11th"
 import { h, ref, watch } from "vue"
 
 import Aaa from "./Aaa.vue"
-ref: a = ""
+const a = ref("")
 
-ref: ext = h(Aaa, { a: a })
+const ext = ref(h(Aaa, { a: a.value }))
 
 window.setTimeout(()=>{
-    console.log(ext)
+    console.log(ext.value)
 },456)
 
 </script>
