@@ -1,21 +1,19 @@
 <template>
-    <table border="1" cellspacing="0" cellpadding="0">
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
+    <table border="1" :cellspacing="tableAttrs.cellspacing" :cellpadding="tableAttrs.cellpadding">
+        <tr :key="rowItem.key" v-for="rowItem in rowItems">
+            <td
+                :colspan="colItem.colspan"
+                :rowspan="colItem.rowspan"
+                :key="colItem.key"
+                v-for="colItem in rowItem.children"
+            >123123</td>
         </tr>
     </table>
-    {{ styleJson }}
+    {{ rowItems }}
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
 
 
 const props = defineProps({
@@ -24,7 +22,11 @@ const props = defineProps({
         default: "default"
     },
 })
-const tableAttrs = props.styleJson.find((item: any) => item.xType === "base")
+const tableAttrs: any =
+    computed(() => props.styleJson.find((item: any) => item.xType === "base"))
+
+const rowItems: any =
+    computed(() => props.styleJson.filter((item: any) => item.key !== undefined))
 
 
 </script>
