@@ -54,6 +54,11 @@ const components: Record<string, unknown> = {
 
        // input-ext
        "InputExtTest": defineAsyncComponent(() => import("./components/input-ext/InputExtTest.vue")),
+       
+       // layout-table
+       "LayoutTableTest": defineAsyncComponent(() => import("./components/layout/table/LayoutTableTest.vue")),
+
+
 }
 
 const is = computed(() => components[props.name])

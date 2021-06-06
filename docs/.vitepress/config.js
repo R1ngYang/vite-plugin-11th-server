@@ -39,6 +39,13 @@ function getComponentsSidebar() {
       ]
     },
     {
+      text: '布局组件',
+      children: [
+        { text: '表格布局', link: '/components/layout/table/' }
+
+      ]
+    },
+    {
       text: '工具',
       children: [
         { text: '输入框拓展', link: '/components/input-ext/' },
