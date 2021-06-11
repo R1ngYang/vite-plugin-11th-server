@@ -21,9 +21,14 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+
+    "themes/**/*.ts",
+    "themes/**/*.d.ts",
+    "themes/**/*.tsx",
+    
     "docs/**/*.ts",
     "docs/**/*.d.ts",
     "docs/**/*.tsx",
-    "docs/**/*.vue"
+    "docs/**/*.vue",
   ]
 }
