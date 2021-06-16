@@ -105,6 +105,9 @@ const roundChannel = (value: number | string): number => {
     return v;
 }
 
+const stringifyRgb = (r: number | string, g: number | string, b: number | string): string => {
+    return `rgb(${roundChannel(r)}, ${roundChannel(g)}, ${roundChannel(b)})`;
+}
 
 const stringifyRgba = (r: number | string, g: number | string, b: number | string, a: number | string): string => {
     return `rgba(${roundChannel(r)}, ${roundChannel(g)}, ${roundChannel(b)}, ${normalizeAlpha(a)})`;
@@ -129,4 +132,91 @@ export const colorsMix = (background: string | RGB | RGBA, overlay: string | RGB
     const a2 = overlay[3] as number;
     const alpha = roundAlpha(a1 + a2 - a1 * a2);
     return stringifyRgba(compositeChannel(background[0], a1, overlay[0], a2, alpha), compositeChannel(background[1], a1, overlay[1], a2, alpha), compositeChannel(background[2], a1, overlay[2], a2, alpha), alpha);
+}
+
+/**
+ * 转RGB
+ * 
+ * @param base 
+ * @returns 
+ */
+const toRgbString = (base: string | RGB | RGBA) => {
+    const [r, g, b] = Array.isArray(base) ? base : rgba(base);
+    return stringifyRgb(r, g, b);
+}
+
+/**
+ * 转RGBA
+ * 
+ * @param base 
+ * @returns 
+ */
+const toRgbaString = (base: RGBA | RGB) => {
+    const [r, g, b] = base;
+    if (3 in base) {
+        return `rgba(${roundChannel(r)}, ${roundChannel(g)}, ${roundChannel(b)}, ${roundAlpha((base as RGBA)[3])})`;
+    }
+    return `rgba(${roundChannel(r)}, ${roundChannel(g)}, ${roundChannel(b)}, 1)`;
+}
+
+/**
+ * 转 # + 8位
+ * 
+ * @param base 
+ * @returns 
+ */
+const toHexaString = (base: RGBA | RGB | string) => {
+    if (typeof base === 'string') {
+        let i;
+        if (i = hexRegex.exec(base)) {
+            return `${i[0]}FF`;
+        }
+        else if (i = hexaRegex.exec(base)) {
+            return i[0];
+        }
+        else if (i = sHexRegex.exec(base)) {
+            return `#${i[1]}${i[1]}${i[2]}${i[2]}${i[3]}${i[3]}FF`;
+        }
+        else if (i = sHexaRegex.exec(base)) {
+            return `#${i[1]}${i[1]}${i[2]}${i[2]}${i[3]}${i[3]}${i[4]}${i[4]}`;
+        }
+        throw new Error(`[seemly/toHexString]: Invalid hex value ${base}.`);
+    }
+    const hex = `#${base
+        .slice(0, 3)
+        .map((unit) => roundChannel(unit).toString(16).toUpperCase().padStart(2, '0'))
+        .join('')}`;
+    const a = base.length === 3
+        ? 'FF'
+        : roundChannel(base[3] * 255)
+            .toString(16)
+            .padStart(2, '0')
+            .toUpperCase();
+    return hex + a;
+}
+
+/**
+ * 转 # + 6位
+ * 
+ * @param base 
+ * @returns 
+ */
+const toHexString = (base: RGBA | RGB | string) => {
+    if (typeof base === 'string') {
+        let i;
+        if (i = hexRegex.exec(base)) {
+            return i[0];
+        }
+        else if (i = hexaRegex.exec(base)) {
+            return i[0].slice(0, 7);
+        }
+        else if (i = (sHexRegex.exec(base) || sHexaRegex.exec(base))) {
+            return `#${i[1]}${i[1]}${i[2]}${i[2]}${i[3]}${i[3]}`;
+        }
+        throw new Error(`[seemly/toHexString]: Invalid hex value ${base}.`);
+    }
+    return `#${base
+        .slice(0, 3)
+        .map((unit) => roundChannel(unit).toString(16).toUpperCase().padStart(2, '0'))
+        .join('')}`;
 }
