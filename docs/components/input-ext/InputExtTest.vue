@@ -13,10 +13,6 @@ const a = ref("")
 
 const ext = ref(h(Aaa, { a: a.value }))
 
-window.setTimeout(()=>{
-    console.log(ext.value)
-},456)
-
 </script>
 
 <style scoped>

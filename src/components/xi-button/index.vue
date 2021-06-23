@@ -8,7 +8,7 @@
   
 <script lang="ts" setup>
 import { computed, defineProps } from "@vue/runtime-core";
-import { sizeOptions, typeOptions } from "../../store/options"
+import { sizeOptions } from "../../util/useThemes"
 import { XiIcon } from "../11th";
 import { getButtonStyle } from "./buttonStyle";
 

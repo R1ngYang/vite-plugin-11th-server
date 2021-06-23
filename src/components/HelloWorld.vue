@@ -1,53 +1,51 @@
 <template>
-  <h1 @click="a++">{{a}}</h1>
-  <h1>{{b}}</h1>
-  <h1>{{c}}</h1>
-  <h1>{{d}}</h1>
-  <h1>{{e}}</h1>
-  <a>{{ccc}}</a>
+        <div class="hacker-main" v-html="text" ref="main" @dblclick="fullscreen"></div>
+</template> 
 
-</template>
+<script lang="ts" setup>import { ref } from "vue";
 
-<script lang="ts" setup>
-import { reactive } from '@vue/reactivity';
-import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
+const main: any = ref("<br><br><br><br><br><br>")
 
+const text = ref("")
+const str = "ABCDEFGHIGKLMNOPQRSTUVWXYZ   $$$"
+const append = () => {
+    window.setTimeout(() => {
+        const out = str[parseInt(`${Math.random() * 32}`)]
+        text.value += (out === '$' ? "<br>" : out);
+        main.value.scrollTop = main.value.scrollHeight;
+        append();
+    }, 30)
 
-  const a = ref(456)
+}
 
-  const cd = ref(789)
+const fullscreen = () => {
+    var docElm = main.value;
+    if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+    } else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+    } else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen();
+    } else if (docElm.msRequestFullscreen) {
+        docElm.msRequestFullscreen();
+    }
+}
 
-  const c = 123
-
-  const d = ref(a.value) 
-
- const ccc = computed(()=>{
-    return `${a.value}`
-  }) 
-  
-  const b= reactive({ab:ccc.value})  as {ab:string,ac:string}
-
-
-  const e = ref(1)
-  onMounted(()=>{
-    e.value = 789;
-    a.value = a.value+789
-    b.ac = "789"
-
-  })
-
-  const color = "red"
-
-
-  mergeProps()
-
-  defineProps
+append();
 
 </script>
 
 <style scoped>
-a {
-  color: v-bind(color);
+.hacker-main {
+    padding:100px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: greenyellow;
+    overflow: auto;
 }
 
+.hacker-main::-webkit-scrollbar {
+    width: 0;
+}
 </style>
