@@ -1,5 +1,0 @@
-export const size = {
-    small: { height: "24px", fontSize: "12px" },
-    default: { height: "32px", fontSize: "14px" },
-    large: { height: "40px", fontSize: "16px" }
-}
