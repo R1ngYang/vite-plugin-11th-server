@@ -37,15 +37,6 @@ const styleJson = ref([
       { key: 2 },
       { key: 3 },
     ]
-  },
-  {
-    key: "3",
-    children: [
-      { key: 0 },
-      { key: 1 },
-      { key: 2 },
-      { key: 3 },
-    ]
   }
 ])
 
