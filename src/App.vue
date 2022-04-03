@@ -26,7 +26,6 @@ const styleJson = ref([
     children: [
       { key: 0, rowspan:2 },
       { key: 1 },
-      { key: 3 },
     ]
   }
 ])
