@@ -23,8 +23,6 @@ const styleJson = ref([
   },
   {
     key: "1",
-    children: [
-    ]
   }
 ])
 
