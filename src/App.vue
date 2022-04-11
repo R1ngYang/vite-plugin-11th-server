@@ -15,7 +15,6 @@ const styleJson = ref([
     cellpadding: "0"
   },
   {
-    key: "0",
   },
   {
   }
