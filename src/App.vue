@@ -16,8 +16,6 @@ const styleJson = ref([
   },
   {
   },
-  {
-  }
 ])
 
 </script>
