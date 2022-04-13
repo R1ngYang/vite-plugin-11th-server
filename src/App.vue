@@ -12,7 +12,6 @@ const styleJson = ref([
   {
     xType: "base",
     cellspacing: "0",
-    cellpadding: "0"
   },
   {
   },
