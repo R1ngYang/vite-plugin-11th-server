@@ -11,7 +11,6 @@ import XiLayout from "./components/xi-layout/index.vue"
 const styleJson = ref([
   {
     xType: "base",
-    cellspacing: "0",
   },
   {
   },
