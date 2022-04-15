@@ -12,8 +12,6 @@ const styleJson = ref([
   {
     xType: "base",
   },
-  {
-  },
 ])
 
 </script>
