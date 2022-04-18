@@ -8,7 +8,4 @@
 import { ref } from "@vue/reactivity";
 import XiLayout from "./components/xi-layout/index.vue"
 
-const styleJson = ref([
-])
-
 </script>
