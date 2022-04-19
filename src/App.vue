@@ -6,6 +6,5 @@
 
 <script lang="ts" setup>
 import { ref } from "@vue/reactivity";
-import XiLayout from "./components/xi-layout/index.vue"
 
 </script>
