@@ -47,7 +47,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
 <style scoped>
 a {
-  color: v-bind(color);
 }
 
 </style>
