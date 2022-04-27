@@ -46,7 +46,5 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 </script>
 
 <style scoped>
-a {
-}
 
 </style>
