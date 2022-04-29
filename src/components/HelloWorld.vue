@@ -41,7 +41,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
   mergeProps()
 
-  defineProps
 
 </script>
 
