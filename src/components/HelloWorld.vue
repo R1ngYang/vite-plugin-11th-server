@@ -39,7 +39,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
   const color = "red"
 
 
-  mergeProps()
 
 
 </script>
