@@ -32,7 +32,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
   onMounted(()=>{
     e.value = 789;
     a.value = a.value+789
-    b.ac = "789"
 
   })
 
