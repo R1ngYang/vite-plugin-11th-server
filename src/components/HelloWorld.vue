@@ -29,9 +29,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
 
   const e = ref(1)
-  onMounted(()=>{
-
-  })
 
 </script>
 
