@@ -25,7 +25,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
     return `${a.value}`
   }) 
   
-  const b= reactive({ab:ccc.value})  as {ab:string,ac:string}
 
 
 
