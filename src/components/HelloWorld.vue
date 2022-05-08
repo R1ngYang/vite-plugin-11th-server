@@ -22,7 +22,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
   const d = ref(a.value) 
 
  const ccc = computed(()=>{
-    return `${a.value}`
   }) 
   
 
