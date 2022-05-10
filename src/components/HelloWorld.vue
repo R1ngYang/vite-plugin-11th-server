@@ -19,11 +19,5 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
   const c = 123
 
-  const d = ref(a.value) 
-
-  
-
-
-
 </script>
 
