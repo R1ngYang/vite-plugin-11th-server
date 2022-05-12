@@ -15,7 +15,6 @@ import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
   const a = ref(456)
 
-  const cd = ref(789)
 
 
 </script>
