@@ -13,7 +13,6 @@ import { reactive } from '@vue/reactivity';
 import { computed, defineProps, mergeProps, onMounted, ref } from 'vue';
 
 
-  const a = ref(456)
 
 
 
