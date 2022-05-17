@@ -19,6 +19,7 @@
     }
   },
   "dependencies": {
+    "connect": "^3.7.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
