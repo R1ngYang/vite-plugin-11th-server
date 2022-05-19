@@ -5,4 +5,9 @@ export default function (app: XiServer) {
     req.body;
     res.send({ a: 123123, b: { a: 123 } });
   });
+
+  app.router('/bb', (req, res) => {
+    req.body;
+    res.send(req.body);
+  });
 }
