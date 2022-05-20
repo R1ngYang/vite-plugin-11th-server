@@ -11,13 +11,8 @@ export default defineConfig({
     vue(),
     xiServerPlugin({
       server,
-      port: 3000,
+      port: 8088,
       outDir: path.resolve(__dirname, "dist")
     })
-  ],
-  server: {
-    proxy: {
-      "/server": "http://localhost:3000"
-    }
-  }
+  ]
 });

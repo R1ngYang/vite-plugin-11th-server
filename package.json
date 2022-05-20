@@ -6,7 +6,8 @@
     "dev": "vite playground --host",
     "build": "vite build playground",
     "bp": "rimraf dist && unbuild",
-    "preview": "vite preview & node ./playground/dist2/server.js"
+    "preview": "vite preview",
+    "serve": "cd ./playground/dist/ & node ./server.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",

@@ -23,9 +23,12 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       app.use(parseParams());
       app.use(parseBody());
       app.use(send());
+      const serveStatic = require("serve-static");
+      app.use(serveStatic("./"), { maxAge: '30d'})
       app.router = app.use;
       server_default(app);
-      app.listen(${options?.port ?? 8080});`
+      app.listen(${options?.port ?? 8080});
+      console.log('http://localhost:${options?.port ?? 8080}')`
 
       const result = await minify(code);
       console.log(path.resolve(options?.outDir ?? '', 'server.js'))
