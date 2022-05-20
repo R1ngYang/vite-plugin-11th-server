@@ -16,6 +16,11 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       app.router = app.use as any;
       options?.server?.(app);
     },
+    config: () => ({
+      build: {
+        outDir: path.resolve(options?.outDir ?? '/')
+      }
+    }),
     async closeBundle() {
       const code = `${options?.server.toString()}${parseParams.toString()}${parseBody.toString()}${send.toString()} 
       var connect = require('connect');
@@ -31,12 +36,9 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       console.log('http://localhost:${options?.port ?? 8080}')`
 
       const result = await minify(code);
-      console.log(path.resolve(options?.outDir ?? '', 'server.js'))
 
       options?.outDir && fs.existsSync(options?.outDir) || options?.outDir && fs.mkdirSync(options?.outDir)
       fs.writeFileSync(path.resolve(options?.outDir ?? '', 'server.js'), result.code || "", "utf8");
-
-      console.log(result)
     }
   };
 }
