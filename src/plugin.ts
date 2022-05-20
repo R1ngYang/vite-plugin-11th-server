@@ -1,5 +1,9 @@
 import { Connect, ViteDevServer } from 'vite';
 import { Req, Res, XiPluginOptions, XiServer } from './types';
+import { minify } from "terser";
+import fs from "fs";
+import path from 'path';
+
 
 export function xiServerPlugin(options?: XiPluginOptions) {
   return {
@@ -11,6 +15,25 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       app.use(send());
       app.router = app.use as any;
       options?.server?.(app);
+    },
+    async closeBundle() {
+      const code = `${options?.server.toString()}${parseParams.toString()}${parseBody.toString()}${send.toString()} 
+      var connect = require('connect');
+      var app = connect();
+      app.use(parseParams());
+      app.use(parseBody());
+      app.use(send());
+      app.router = app.use;
+      server_default(app);
+      app.listen(${options?.port ?? 8080});`
+
+      const result = await minify(code);
+      console.log(path.resolve(options?.outDir ?? '', 'server.js'))
+
+      options?.outDir && fs.existsSync(options?.outDir) || options?.outDir && fs.mkdirSync(options?.outDir)
+      fs.writeFileSync(path.resolve(options?.outDir ?? '', 'server.js'), result.code || "", "utf8");
+
+      console.log(result)
     }
   };
 }

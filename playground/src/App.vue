@@ -3,13 +3,13 @@
 </template>
 
 <script setup lang="ts">
-  fetch('/aa')
+  fetch('/server/aa')
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
     });
 
-  fetch('/bb', {
+  fetch('/server/bb', {
     method: 'post',
     body: JSON.stringify({ b: 'bbb' })
   })
