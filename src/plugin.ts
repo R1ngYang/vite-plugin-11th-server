@@ -1,8 +1,8 @@
 import { Connect, ViteDevServer } from 'vite';
 import { Req, Res, XiPluginOptions, XiServer } from './types';
-import { minify } from "terser";
 import fs from "fs";
 import path from 'path';
+import { buildSync } from 'esbuild';
 
 
 export function xiServerPlugin(options?: XiPluginOptions) {
@@ -22,23 +22,32 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       }
     }),
     async closeBundle() {
-      const code = `${options?.server.toString()}${parseParams.toString()}${parseBody.toString()}${send.toString()} 
-      var connect = require('connect');
-      var app = connect();
+      const code = `
+      const serveStatic = require("serve-static");
+      const connect = require('connect');
+      ${options?.server.toString()}${parseParams.toString()}${parseBody.toString()}${send.toString()} 
+      const app = connect();
       app.use(parseParams());
       app.use(parseBody());
       app.use(send());
-      const serveStatic = require("serve-static");
       app.use(serveStatic("./"), { maxAge: '30d'})
       app.router = app.use;
       server_default(app);
       app.listen(${options?.port ?? 8080});
       console.log('http://localhost:${options?.port ?? 8080}')`
 
-      const result = await minify(code);
 
       options?.outDir && fs.existsSync(options?.outDir) || options?.outDir && fs.mkdirSync(options?.outDir)
-      fs.writeFileSync(path.resolve(options?.outDir ?? '', 'server.js'), result.code || "", "utf8");
+      const file = path.resolve(options?.outDir ?? '', `${new Date().getTime()}.js`)
+      const out = path.resolve(options?.outDir ?? '', 'server.js')
+      fs.writeFileSync(file, code || "", "utf8");
+      buildSync({
+        entryPoints: [file],
+        bundle: true,
+        platform: 'node',
+        outfile: out,
+      })
+      fs.unlinkSync(file)
     }
   };
 }

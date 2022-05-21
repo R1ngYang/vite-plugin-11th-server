@@ -19,13 +19,13 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "dependencies": {
-    "connect": "^3.7.0",
-    "terser": "^5.13.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^17.0.31",
+    "connect": "^3.7.0",
+    "esbuild": "^0.14.39",
     "rimraf": "^3.0.2",
+    "serve-static": "^1.15.0",
     "typescript": "^4.5.4",
     "unbuild": "^0.7.4",
     "vite": "^2.9.9",
