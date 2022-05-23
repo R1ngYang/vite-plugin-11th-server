@@ -7,7 +7,7 @@ import { buildSync } from 'esbuild';
 
 export function xiServerPlugin(options?: XiPluginOptions) {
   return {
-    name: 'vite-plugin-xi-server',
+    name: 'vite-plugin-11th-server',
     configureServer(server: ViteDevServer) {
       const app = server.middlewares as XiServer;
       app.use(parseParams());

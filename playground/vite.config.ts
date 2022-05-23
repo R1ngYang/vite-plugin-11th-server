@@ -1,7 +1,7 @@
-import { defineConfig, Connect } from 'vite';
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-// import xiServerPlugin from 'vite-plugin-xi-server';
-import xiServerPlugin from '../src/index';
+import xiServerPlugin from 'vite-plugin-11th-server';
+// import xiServerPlugin from '../src/index';
 import server from './server';
 import path from 'path';
 

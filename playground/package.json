@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
+    "vite-plugin-11th-server": "workspace:*",
     "vue-tsc": "^0.34.7"
   }
 }

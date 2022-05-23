@@ -1,7 +1,7 @@
 {
-  "name": "vite-plugin-xi-server",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vite-plugin-11th-server",
+  "private": false,
+  "version": "0.0.0-beta.1",
   "scripts": {
     "dev": "vite playground --host",
     "build": "vite build playground",
@@ -10,8 +10,12 @@
     "serve": "cd ./playground/dist/ & node ./server.js"
   },
   "main": "./dist/index.cjs",
+  "license": "MIT",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
@@ -19,16 +23,16 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "dependencies": {},
-  "devDependencies": {
-    "@types/node": "^17.0.31",
+  "dependencies": {
     "connect": "^3.7.0",
     "esbuild": "^0.14.39",
+    "serve-static": "^1.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
     "rimraf": "^3.0.2",
-    "serve-static": "^1.15.0",
     "typescript": "^4.5.4",
     "unbuild": "^0.7.4",
-    "vite": "^2.9.9",
-    "vite-plugin-xi-server": "workspace:*"
+    "vite": "^2.9.9"
   }
 }
