@@ -22,10 +22,14 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       }
     }),
     async closeBundle() {
+      const serverStr = options?.server.toString()!
       const code = `
       const serveStatic = require("serve-static");
       const connect = require('connect');
-      ${options?.server.toString()}${parseParams.toString()}${parseBody.toString()}${send.toString()} 
+      const server_default = ${/(^\(\S+\)\s*=>.*)|(^function.*)/.test(serverStr) ? '' : 'function '}${serverStr}
+      ${parseParams.toString()}
+      ${parseBody.toString()}
+      ${send.toString()} 
       const app = connect();
       app.use(parseParams());
       app.use(parseBody());
@@ -47,7 +51,7 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         platform: 'node',
         outfile: out,
       })
-      fs.unlinkSync(file)
+      // fs.unlinkSync(file)
     }
   };
 }

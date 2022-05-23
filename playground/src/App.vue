@@ -1,22 +1,20 @@
 <template>
-  <div></div>
+  <div>{{ result }}</div>
 </template>
 
 <script setup lang="ts">
-  fetch('/server/aa')
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
+  import { ref } from 'vue';
 
-  fetch('/server/bb', {
+  const result = ref();
+  fetch('api', {
     method: 'post',
-    body: JSON.stringify({ b: 'bbb' })
+    body: JSON.stringify({ a: 'a', b: 2 })
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      result.value = data;
     });
+
 </script>
 
 <style scoped></style>
