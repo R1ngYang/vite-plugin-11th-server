@@ -1,25 +1,68 @@
-### 安装插件
+### Install
 
 ```
  npm install vite-plugin-11th-server
 ```
 
-### 安装一些依赖
-- 构建时此两个为必须依赖
+### Usage
+
+- vite.config.ts
+
+```ts
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { xiServerPlugin, XiServer } from 'vite-plugin-11th-server';
+import { resolve } from 'path';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    xiServerPlugin({
+      server: (app: XiServer) => {
+        app.router('/hello', (req, res) => {
+          res.end("hello world");
+        });
+        app.router('/api', (req, res) => {
+          res.send(req.body);
+        });
+      },
+      port: 8088,
+      outDir: resolve(__dirname, 'dist')
+    })
+  ]
+});
+```
+
+### XiPluginOptions
+
+``` ts
+  server: (app: XiServer) => void;
+  port?: number;
+  outDir?: string;
+```
+
+### Install Other
+
+- Build must
+
 ```
  npm install connect
  npm install serve-static
 ```
 
-### 构建
+### Build
 
 ```
  npm run build
 ```
 
-### 运行
+### Run Server
 
 ```
-cd .\dist\ 
-node .\server.js
+ node ./dist/server.js
 ```
+
+### Open
+
+web http://localhost:8088/
+server http://localhost:8088/hello
