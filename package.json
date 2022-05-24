@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-11th-server",
   "private": false,
-  "version": "0.0.0-beta.4",
+  "version": "0.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/R1ngYang/vite-plugin-11th-server"
@@ -11,7 +11,7 @@
     "build": "vite build playground",
     "pub": "rimraf dist && unbuild && npm publish",
     "preview": "vite preview",
-    "serve": "cd ./playground/dist/ & node ./server.js"
+    "serve": "node ./playground/dist/server.js"
   },
   "main": "./dist/index.cjs",
   "license": "MIT",

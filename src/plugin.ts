@@ -34,7 +34,7 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       app.use(parseParams());
       app.use(parseBody());
       app.use(send());
-      app.use(serveStatic("./"), { maxAge: '30d'})
+      app.use(serveStatic(\_\_dirname), { maxAge: '30d'})
       app.router = app.use;
       server_default(app);
       app.listen(${options?.port ?? 8080});
