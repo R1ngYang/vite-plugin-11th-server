@@ -11,7 +11,8 @@
     "build": "vite build playground",
     "pub": "rimraf dist && unbuild && npm publish",
     "preview": "vite preview",
-    "serve": "node ./playground/dist/server.js"
+    "serve": "node ./playground/dist/server.js",
+    "dev1": "vite examples/request-test --host"
   },
   "main": "./dist/index.cjs",
   "keywords": [
