@@ -1,3 +1,7 @@
+### vite-plugin-11th-server
+
+A vite plugin that fast build server
+
 ### Install
 
 ```
@@ -20,7 +24,7 @@ export default defineConfig({
     xiServerPlugin({
       server: (app: XiServer) => {
         app.router('/hello', (req, res) => {
-          res.end("hello world");
+          res.end('hello world');
         });
         app.router('/api', (req, res) => {
           res.send(req.body);
@@ -35,7 +39,7 @@ export default defineConfig({
 
 ### XiPluginOptions
 
-``` ts
+```ts
   server: (app: XiServer) => void;
   port?: number;
   outDir?: string;
