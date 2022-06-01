@@ -14,7 +14,7 @@ export interface Res extends ServerResponse {
 }
 
 export interface XiPluginOptions {
-  server: (app: XiServer) => void;
+  server: ((app: XiServer) => void | Promise<void>);
   port?: number;
   outDir?: string;
 }

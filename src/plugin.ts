@@ -8,13 +8,13 @@ import { buildSync } from 'esbuild';
 export function xiServerPlugin(options?: XiPluginOptions) {
   return {
     name: 'vite-plugin-11th-server',
-    configureServer(server: ViteDevServer) {
+    async configureServer(server: ViteDevServer) {
       const app = server.middlewares as XiServer;
       app.use(parseParams());
       app.use(parseBody());
       app.use(send());
       app.router = app.use as any;
-      options?.server?.(app);
+      await options?.server?.(app);
     },
     config: () => ({
       build: {
@@ -26,18 +26,21 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       const code = `
       const serveStatic = require("serve-static");
       const connect = require('connect');
-      const server_default = ${/(^\(\S+\)\s*=>.*)|(^function.*)/.test(serverStr) ? '' : 'function '}${serverStr}
-      ${parseParams.toString()}
-      ${parseBody.toString()}
-      ${send.toString()} 
-      const app = connect();
-      app.use(parseParams());
-      app.use(parseBody());
-      app.use(send());
-      app.use(serveStatic(\_\_dirname), { maxAge: '30d'})
-      app.router = app.use;
-      server_default(app);
-      app.listen(${options?.port ?? 8080});
+      (async ()=>{
+
+        const server_default = ${/(^\(\S+\)\s*=>.*)|(^function.*)|(^async function.*)/.test(serverStr) ? '' : 'function '}${serverStr}
+        ${parseParams.toString()}
+        ${parseBody.toString()}
+        ${send.toString()} 
+        const app = connect();
+        app.use(parseParams());
+        app.use(parseBody());
+        app.use(send());
+        app.use(serveStatic(\_\_dirname), { maxAge: '30d'})
+        app.router = app.use;
+        await server_default(app);
+        app.listen(${options?.port ?? 8080});
+      })()
       console.log('http://localhost:${options?.port ?? 8080}')`
 
 
@@ -51,7 +54,7 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         platform: 'node',
         outfile: out,
       })
-      // fs.unlinkSync(file)
+      fs.unlinkSync(file)
     }
   };
 }
