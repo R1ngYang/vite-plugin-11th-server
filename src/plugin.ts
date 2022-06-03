@@ -1,10 +1,10 @@
-import { Connect, ViteDevServer } from 'vite';
+import { Connect, UserConfig, ViteDevServer } from 'vite';
 import { Req, Res, XiPluginOptions, XiServer } from './types';
 import fs from "fs";
 import path from 'path';
 import { buildSync } from 'esbuild';
 
-
+let isBuild = false;
 export function xiServerPlugin(options?: XiPluginOptions) {
   return {
     name: 'vite-plugin-11th-server',
@@ -16,12 +16,16 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       app.router = app.use as any;
       await options?.server?.(app);
     },
-    config: () => ({
-      build: {
-        outDir: path.resolve(options?.outDir ?? '/')
-      }
-    }),
+    config: (config: UserConfig, { command }: { command: 'build' | 'serve' }) => {
+      isBuild = command === 'build'
+      return ({
+        build: {
+          outDir: path.resolve(options?.outDir ?? '/')
+        }
+      })
+    },
     async closeBundle() {
+      if (!isBuild) return
       const serverStr = options?.server.toString()!
       const code = `
       const serveStatic = require("serve-static");

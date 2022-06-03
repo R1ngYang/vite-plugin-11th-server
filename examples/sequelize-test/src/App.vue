@@ -1,4 +1,5 @@
 <template>
+  <XiToDoList></XiToDoList>
   <button @click="handleGet">发送get请求</button>
   <div>{{ getContent }}</div>
   <br />
@@ -8,6 +9,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue';
+  import XiToDoList from './XiToDoList.vue';
 
   const getContent = ref();
   function handleGet() {

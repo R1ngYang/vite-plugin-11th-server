@@ -1,6 +1,7 @@
 import { XiServer } from 'vite-plugin-11th-server';
-
 import { Sequelize, DataTypes, Model } from 'sequelize';
+import { todoList } from './todo-list';
+
 class User extends Model { };
 
 const sequelize = new Sequelize('sqlite::memory:');
@@ -11,6 +12,7 @@ User.init({
 }, { sequelize, modelName: 'user' });
 
 export async function server(app: XiServer) {
+    await todoList(app)
     await sequelize.sync();
     await User.create({
         username: 'janedoe',
