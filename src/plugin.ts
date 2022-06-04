@@ -26,13 +26,27 @@ export function xiServerPlugin(options?: XiPluginOptions) {
     },
     async closeBundle() {
       if (!isBuild) return
-      const serverStr = options?.server.toString()!
+      let text = "";
+      if (options?.serverDir) {
+        const { outputFiles } = buildSync({
+          entryPoints: [options.serverDir],
+          bundle: true,
+          platform: 'node',
+          write: false
+        })
+        text = `${outputFiles[0].text}
+        const server_default = module.exports.default;
+        `
+      } else {
+        const serverStr = options?.server.toString()!;
+        text = `const server_default = ${/(^\(\S+\)\s*=>.*)|(^function.*)|(^async function.*)/.test(serverStr) ? '' : 'function '}${serverStr}`
+      }
+
       const code = `
       const serveStatic = require("serve-static");
       const connect = require('connect');
       (async ()=>{
-
-        const server_default = ${/(^\(\S+\)\s*=>.*)|(^function.*)|(^async function.*)/.test(serverStr) ? '' : 'function '}${serverStr}
+        ${text}
         ${parseParams.toString()}
         ${parseBody.toString()}
         ${send.toString()} 
@@ -58,7 +72,7 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         platform: 'node',
         outfile: out,
       })
-      fs.unlinkSync(file)
+      // fs.unlinkSync(file)
     }
   };
 }
