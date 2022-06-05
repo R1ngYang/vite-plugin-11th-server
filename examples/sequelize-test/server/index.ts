@@ -11,7 +11,7 @@ User.init({
     birthday: DataTypes.DATE
 }, { sequelize, modelName: 'user' });
 
-export async function server(app: XiServer) {
+export default async function server(app: XiServer) {
     await todoList(app)
     await sequelize.sync();
     await User.create({
