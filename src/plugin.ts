@@ -72,7 +72,7 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         platform: 'node',
         outfile: out,
       })
-      // fs.unlinkSync(file)
+      fs.unlinkSync(file)
     }
   };
 }
