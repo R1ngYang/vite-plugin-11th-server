@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { XiServer } from 'vite-plugin-11th-server';
+import { xiServerPlugin } from 'vite-plugin-11th-server';
 import path from 'path';
 import server from './server';
-import { xiServerPlugin } from '../../src/plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({

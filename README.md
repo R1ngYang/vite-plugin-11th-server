@@ -41,6 +41,7 @@ export default defineConfig({
 
 ```ts
   server: (app: XiServer) => void;
+  serverDir：string;
   port?: number;
   outDir?: string;
 ```
