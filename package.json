@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "serve": "node ./playground/dist/server.js",
     "dev1": "vite examples/request-test --host",
-    "dev2": "vite examples/sequelize-test --host"
+    "dev2": "vite examples/sequelize-test --host",
+    "dev3": "vite examples/json-test --host"
   },
   "main": "./dist/index.cjs",
   "keywords": [
