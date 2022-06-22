@@ -3,8 +3,11 @@ import { Req, Res, XiPluginOptions, XiServer } from './types';
 import fs from "fs";
 import path from 'path';
 import { buildSync } from 'esbuild';
+import { WebSocketServer } from 'ws';
+
 
 let isBuild = false;
+let wss: WebSocketServer | undefined;
 export function xiServerPlugin(options?: XiPluginOptions) {
   return {
     name: 'vite-plugin-11th-server',
@@ -14,7 +17,11 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       app.use(parseBody());
       app.use(send());
       app.router = app.use as any;
-      await options?.server?.(app);
+
+      wss = options?.wsPort ? new WebSocketServer({
+        port: options?.wsPort,
+      }) : undefined
+      await options?.server?.(app, wss);
     },
     config: (config: UserConfig, { command }: { command: 'build' | 'serve' }) => {
       isBuild = command === 'build'
@@ -25,6 +32,7 @@ export function xiServerPlugin(options?: XiPluginOptions) {
       })
     },
     async closeBundle() {
+      wss?.close()
       if (!isBuild) return
       let text = "";
       if (options?.serverDir) {
@@ -39,7 +47,15 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         `
       } else {
         const serverStr = options?.server.toString()!;
-        text = `const server_default = ${/(^\(\S+\)\s*=>.*)|(^function.*)|(^async function.*)/.test(serverStr) ? '' : 'function '}${serverStr}`
+        text = `const server_default = ${/(^\((\S+)|(\S+,\s{1}\S+)\)\s*=>.*)|(^function.*)|(^async function.*)/.test(serverStr) ? '' : 'function '}${serverStr}`
+      }
+      let ws = ""
+      if (options?.wsPort) {
+        ws = `
+        const ws = require("ws");
+        wss = new ws.WebSocketServer({
+          port: ${options?.wsPort},
+        })`
       }
 
       const code = `
@@ -56,7 +72,9 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         app.use(send());
         app.use(serveStatic(\_\_dirname), { maxAge: '30d'})
         app.router = app.use;
-        await server_default(app);
+        let wss = undefined;
+        ${ws}
+        await server_default(app, wss);
         app.listen(${options?.port ?? 8080});
       })()
       console.log('http://localhost:${options?.port ?? 8080}')`

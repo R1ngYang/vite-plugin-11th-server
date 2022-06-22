@@ -1,5 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { Connect } from 'vite';
+import { WebSocketServer } from 'ws';
+
 
 export type XiServerHandle = (req: Req, res: Res, next: Function) => void;
 export type Router = { path: string | URL; handle: XiServerHandle };
@@ -14,9 +16,10 @@ export interface Res extends ServerResponse {
 }
 
 export interface XiPluginOptions {
-  server: ((app: XiServer) => void | Promise<void>);
+  server: ((app: XiServer, wss?: WebSocketServer) => void | Promise<void>);
   serverDir?: string;
   port?: number;
+  wsPort?: number;
   outDir?: string;
 }
 
