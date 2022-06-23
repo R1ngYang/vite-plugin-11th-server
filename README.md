@@ -40,9 +40,10 @@ export default defineConfig({
 ### XiPluginOptions
 
 ```ts
-  server: (app: XiServer) => void;
+  server: (app: XiServer, wss?: WebSocketServer) => void;
   serverDir：string;
   port?: number;
+  wsPort?: number;
   outDir?: string;
 ```
 
@@ -55,6 +56,12 @@ export default defineConfig({
  npm install serve-static
 ```
 
+
+- WebSocket must
+
+```
+ npm install ws
+```
 ### Build
 
 ```

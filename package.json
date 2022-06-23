@@ -14,7 +14,8 @@
     "serve": "node ./playground/dist/server.js",
     "dev1": "vite examples/request-test --host",
     "dev2": "vite examples/sequelize-test --host",
-    "dev3": "vite examples/react-test --host"
+    "dev3": "vite examples/react-test --host",
+    "dev4": "vite examples/ws-test --host"
   },
   "main": "./dist/index.cjs",
   "keywords": [

@@ -78,9 +78,8 @@ importers:
       vite-plugin-11th-server: link:../..
       vue-tsc: 0.34.13_typescript@4.6.4
 
-  playground:
+  examples/ws-test:
     specifiers:
-      '@types/ws': ^8.5.3
       '@vitejs/plugin-vue': ^2.3.3
       vite-plugin-11th-server: workspace:*
       vue: ^3.2.25
@@ -88,7 +87,19 @@ importers:
     dependencies:
       vue: 3.2.33
     devDependencies:
-      '@types/ws': 8.5.3
+      '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.33
+      vite-plugin-11th-server: link:../..
+      vue-tsc: 0.34.13_typescript@4.6.4
+
+  playground:
+    specifiers:
+      '@vitejs/plugin-vue': ^2.3.3
+      vite-plugin-11th-server: workspace:*
+      vue: ^3.2.25
+      vue-tsc: ^0.34.7
+    dependencies:
+      vue: 3.2.33
+    devDependencies:
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.33
       vite-plugin-11th-server: link:..
       vue-tsc: 0.34.13_typescript@4.6.4
@@ -557,12 +568,6 @@ packages:
   /@types/validator/13.7.2:
     resolution: {integrity: sha512-KFcchQ3h0OPQgFirBRPZr5F/sVjxZsOrQHedj3zi8AH3Zv/hOLx2OLR4hxR5HcfoU+33n69ZuOfzthKVdMoTiw==}
     dev: false
-
-  /@types/ws/8.5.3:
-    resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
-    dependencies:
-      '@types/node': 17.0.35
-    dev: true
 
   /@vitejs/plugin-react/1.3.2:
     resolution: {integrity: sha512-aurBNmMo0kz1O4qRoY+FM4epSA39y3ShWGuqfLRA/3z0oEJAdtoSfgA3aO98/PCCHAqMaduLxIxErWrVKIFzXA==}
