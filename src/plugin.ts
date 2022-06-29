@@ -91,6 +91,8 @@ export function xiServerPlugin(options?: XiPluginOptions) {
         outfile: out,
       })
       fs.unlinkSync(file)
+      console.info("build over")
+      console.info("node server.js")
     }
   };
 }
