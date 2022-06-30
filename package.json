@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-11th-server",
   "private": false,
-  "version": "0.0.4",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/R1ngYang/vite-plugin-11th-server"
@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite playground --host",
     "build": "vite build playground",
-    "pub": "rimraf dist && unbuild",
+    "pub": "rimraf dist && unbuild && npm publish",
     "preview": "vite preview",
     "serve": "node ./playground/dist/server.js",
     "dev1": "vite examples/request-test --host",
