@@ -1,17 +1,18 @@
 <template>
-  <div>
-    helloword
-  </div>
+  <div>{{ result }}</div>
 </template>
-<script setup lang="ts">
 
+<script setup lang="ts">
+  import { ref } from 'vue';
+
+  const result = ref();
   fetch('api', {
     method: 'post',
     body: JSON.stringify({ a: 'a', b: 2 })
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      result.value = data;
     });
 </script>
 
